@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # You can add environment variables to this script that you might otherwise add as command line arguments in the `docker-compose` commands.
 
 # export ROLE_ARN=$1

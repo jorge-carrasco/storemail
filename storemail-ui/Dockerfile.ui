@@ -1,6 +1,6 @@
 # This Dockerfile will create a production version of the SvelteKit app (i.e. frontend code).
 # The final version will be a web server (using Express.js) and a collection of static files
-# inside the container's `/app/build` directory.
+# inside the container's `/storemail/build` directory.
 
 # These Dockerfile instructions were borrowed from this post:
 # https://blog.alexanderwolf.tech/how-to-dockerize-your-sveltekit-app/
@@ -8,9 +8,9 @@
 # Multi-stage builds: https://dev.to/ganeshmani/crafting-multi-stage-builds-with-docker-in-node-js-hki.
 
 
-# These instructions are for testing a client image (using Svelte) by itself.
+# These instructions are for testing a ui image (using Svelte) by itself.
 # -------------------------------------------------------------------------
-# Build this Dockerfile into an image: `docker build -t svelte-image -f Dockerfile.client .`
+# Build this Dockerfile into an image: `docker build -t svelte-image -f Dockerfile.ui .`
 # Run a Docker container from this image: 
   # `docker run --name svelte-container --rm -p 3000:3000 svelte-image`
   # If you have problems accessing the page in a browser, then look at this post for a possible solution: https://stackoverflow.com/questions/49497211/docker-container-running-vue-cli-welcome-page-on-localhost-this-site-can-t-be-r
@@ -26,10 +26,10 @@
 FROM node:slim AS base
 
 # Set the working directory.
-WORKDIR /app
+WORKDIR /workspaces/storemail
 
-# Copy the `client` directory over to the `/app` directory of the intermediate image.
-COPY ./client .
+# Copy the `ui` directory over to the `/storemail` directory of the intermediate image.
+COPY ./storemail-ui .
 
 # Install dependencies. This will install the dependencies inside the Docker container and create a
 # node_modules folder inside the Docker container rather than copying a node_modules folder from the
@@ -47,7 +47,7 @@ RUN npm run build
 FROM node:slim AS build
 
 # Same as above.
-WORKDIR /app
+WORKDIR /storemail
 
 # The static files have been compiled, so they do not need the node_modules folder in order to work.
 # However, the Express.js server does need packages from the node_modules folder in order to work.
@@ -55,12 +55,12 @@ WORKDIR /app
 RUN npm install express http-proxy-middleware
 
 # Copy only the client-side build artifacts (i.e. the static files) from the `base` 
-# image into the new stage's `/app/build` directory.
-COPY --from=base /app/build ./build
+# image into the new stage's `/storemail/build` directory.
+COPY --from=base /storemail/build ./build
 
 # Express.js will act as the web server to server up the static files for this container and redirect any requests that begin with `/api` to the backend container.
 # Copy the express-web-server.js file from the `base` image over to the new stage's `/app` directory.
-COPY --from=base /app/express-web-server.js .
+COPY --from=base /storemail/express-web-server.js .
 
 # Make the Express.js server available to the host machine on port 80.
 # Uncomment port 80 for live deployment.

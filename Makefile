@@ -19,11 +19,11 @@ dev-build-no-cache:
 # To understand how to pass environment variables to docker-compose through the commandline, see this Stackoverflow answer https://stackoverflow.com/a/50991623 along with the comments below it.
 # IMPORTANT NOTE ABOUT ENV VARIABLES IN DOCKER COMPOSE: The frontend code is bundled with the Vite bundler. In order to make environment variables available in the frontend code, you have to prefix the environment variable name with "VITE_".
 dev-run:
-	docker-compose -f docker-compose.dev.yml up
+	docker-compose --verbose -f docker-compose.dev.yml up
 
-# If you have local versions of the `/storemail-client/node_modules` and `/storemail-client/.svelte-kit` directories (i.e. versions of those directories that were created outside of Docker), then you might have to delete them before running this app inside of Docker containers for development.
+# If you have local versions of the `/storemail-ui/node_modules` and `/storemail-ui/.svelte-kit` directories (i.e. versions of those directories that were created outside of Docker), then you might have to delete them before running this app inside of Docker containers for development.
 dev-run-rm:
-	sudo rm -rf storemail-client/node_modules storemail-client/.svelte-kit && docker-compose -f docker-compose.dev.yml up
+	sudo rm -rf storemail-ui/node_modules storemail-ui/.svelte-kit && docker-compose -f docker-compose.dev.yml up
 
 # Terminal Command: make dev-run-daemon
 # The `-d` flag will run the app in daemon mode (i.e., in the background).

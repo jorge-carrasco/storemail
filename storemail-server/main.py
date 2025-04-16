@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request, Body, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, RedirectResponse
 
-from utils.format_error import format_error
+from src.utils.format_error import format_error
 
 app = FastAPI()
 

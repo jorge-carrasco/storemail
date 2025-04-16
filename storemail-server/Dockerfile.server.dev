@@ -10,7 +10,7 @@
 FROM continuumio/anaconda3:2021.05
 
 # Create the following directory in the container and make it the container's current working directory.
-WORKDIR /app/storemail-server
+WORKDIR /app
 
 # Copy the files from this project's server directory into the container's current working directory.
 COPY ./storemail-server .
@@ -23,4 +23,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8000
 
 # Run a script that will run the default app for this container.
-CMD ["bash", "./start_server_dev.sh"]
+CMD ["bash", "/app/start_server_dev.sh"]

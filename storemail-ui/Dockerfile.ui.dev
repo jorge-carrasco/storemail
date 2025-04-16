@@ -1,6 +1,6 @@
-# These instructions are for testing a client image (using Svelte) by itself.
+# These instructions are for testing a ui image (using Svelte) by itself.
 # -------------------------------------------------------------------------
-# Build this Dockerfile into an image: `docker build -t svelte-image -f Dockerfile.client.dev .`
+# Build this Dockerfile into an image: `docker build -t svelte-image -f Dockerfile.ui.dev .`
 # Run a Docker container from this image: 
   # `docker run --name svelte-container --rm -p 3000:3000 svelte-image`
   # If you have problems accessing the page in a browser, then look at this post for a possible solution: https://stackoverflow.com/questions/49497211/docker-container-running-vue-cli-welcome-page-on-localhost-this-site-can-t-be-r
@@ -15,10 +15,10 @@
   FROM node:slim
 
   # Create the following directory in the container and make it the container's current working directory.
-  WORKDIR /app/client
+  WORKDIR /app
   
   # Optionally copy package.json and package-lock.json files, if they exist.
-  COPY ./client/package*.json ./
+  COPY ./storemail-ui/package*.json ./
   
   # Install dependencies. This will install the dependencies inside the Docker container and create a
   # node_modules folder inside the Docker container rather than copying a node_modules folder from the
@@ -26,7 +26,7 @@
   RUN npm install
   
   # Copy the files from this project's client directory into the container's current working directory.
-  COPY ./client .
+  COPY ./storemail-ui .
   
   # Make the dev server available to the host machine on port 3000.
   EXPOSE 3000
