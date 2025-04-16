@@ -21,9 +21,9 @@ dev-build-no-cache:
 dev-run:
 	docker-compose -f docker-compose.dev.yml up
 
-# If you have local versions of the `/client/node_modules` and `/client/.svelte-kit` directories (i.e. versions of those directories that were created outside of Docker), then you might have to delete them before running this app inside of Docker containers for development.
+# If you have local versions of the `/storemail-client/node_modules` and `/storemail-client/.svelte-kit` directories (i.e. versions of those directories that were created outside of Docker), then you might have to delete them before running this app inside of Docker containers for development.
 dev-run-rm:
-	sudo rm -rf client/node_modules client/.svelte-kit && docker-compose -f docker-compose.dev.yml up
+	sudo rm -rf storemail-client/node_modules storemail-client/.svelte-kit && docker-compose -f docker-compose.dev.yml up
 
 # Terminal Command: make dev-run-daemon
 # The `-d` flag will run the app in daemon mode (i.e., in the background).
