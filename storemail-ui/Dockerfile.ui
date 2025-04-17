@@ -26,7 +26,7 @@
 FROM node:slim AS base
 
 # Set the working directory.
-WORKDIR /workspaces/storemail
+WORKDIR /app
 
 # Copy the `ui` directory over to the `/storemail` directory of the intermediate image.
 COPY ./storemail-ui .

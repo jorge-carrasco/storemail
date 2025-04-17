@@ -2,12 +2,12 @@
 	"name": "storemail-ui",
 	"version": "0.0.1",
 	"scripts": {
-	  "dev": "svelte-kit dev --host",
-	  "build": "svelte-kit build",
-	  "package": "svelte-kit package",
-	  "preview": "svelte-kit preview",
-	  "check": "svelte-check --tsconfig ./tsconfig.json",
-	  "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"serve": "vite build && vite preview",
+		"check": "svelte-check",
+		"test": "playwright test tests/*.test.ts",
 	  "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
 	  "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},

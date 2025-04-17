@@ -13,7 +13,7 @@ FROM continuumio/anaconda3:2021.05
 WORKDIR /app
 
 # Copy the files from this project's server directory into the container's current working directory.
-COPY ./storemail-server .
+COPY ./storemail-server/ .
 
 # Install Python dependencies.
 # What is pip's `--no-cache-dir` good for?: https://stackoverflow.com/questions/45594707/what-is-pips-no-cache-dir-good-for
@@ -23,4 +23,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8000
 
 # Run a script that will run the default app for this container.
-CMD ["bash", "/app/start_server_dev.sh"]
+CMD ["bash", "./start_server_dev.sh"]
