@@ -3,7 +3,10 @@
 {
 	"name": "storemail_dev",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/python:3.13",
+	"build": {
+		// Path is relative to the devcontainer.json file.
+		"dockerfile": "Dockerfile"
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
@@ -32,7 +35,8 @@
 				"ms-python.vscode-pylance",
 				"ms-python.debugpy",
 				"svelte.svelte-vscode",
-				"ms-vscode.makefile-tools"
+				"ms-vscode.makefile-tools",
+				"christian-kohler.npm-intellisense"
 			]
 		}
 	}
