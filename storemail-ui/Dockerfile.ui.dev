@@ -29,7 +29,7 @@
   COPY ./storemail-ui/ .
   
   # Make the dev server available to the host machine on port 3000.
-  EXPOSE 3000
+  EXPOSE 5173
   
   # Execute the app in this container.
   CMD ["npm", "run", "dev"]

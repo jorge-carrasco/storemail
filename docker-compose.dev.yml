@@ -34,7 +34,8 @@ services:
     ports:
       # - target: 3000
       #   published: 3000
-      - "3000:3000"
+      - target: 5173
+        published: 5173
       # Configuring the ports "24678:24678" will prevent the browser from constantly reloading.
       # See https://github.com/sveltejs/kit/issues/1468 and https://github.com/sveltejs/kit/issues/1134.
       - "24678:24678"    
